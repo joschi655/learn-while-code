@@ -59,6 +59,7 @@ Streak: 3 days | Total quizzes: 15 | Avg confidence: 3.2/5
 | 5 | Trivial, instant recall | Maximum growth, ease factor increases |
 
 ## Gotchas
+- **Use the learning profile.** The SessionStart hook injects what the user has mastered vs. weak. When explaining correct answers, connect to concepts they already understand — "you know Express middleware; this is the same layering idea applied to auth."
 - Never quiz on `unseen` concepts — they haven't been encountered yet.
 - If no concepts are due: "All caught up! Keep coding — new patterns are detected automatically."
 - Maximum 5 questions per session to prevent quiz fatigue.

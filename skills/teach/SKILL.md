@@ -44,6 +44,7 @@ Questions about this?
 ```
 
 ## Gotchas
+- **Use the learning profile.** The SessionStart hook injects what the user has mastered, understood, and what's weak. Don't over-explain mastered concepts — mention them as context ("you already know Express middleware — this uses the same pattern for..."). Spend depth on encountered/unseen concepts.
 - Explain architecture decisions, not syntax. "This uses middleware" is useless. "Middleware here separates auth from business logic so each can be tested independently" is useful.
 - If the change is trivial (typo fix, version bump), say "Nothing architecturally interesting — no new concepts here" and skip.
 - Read the actual diff, don't guess from file names.
