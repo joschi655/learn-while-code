@@ -69,7 +69,8 @@ vite-bundling          ████    2 projects  [encountered]
 - [Concepts encountered 5+ times but never quizzed]
 ```
 
-5. End with a recommendation:
+5. If Obsidian sync is enabled, run `syncAllIndexes()` to regenerate all index notes (overview, categories, projects)
+6. End with a recommendation:
    - If concepts are due: "You have N concepts due for review. Say 'quiz me' to start."
    - If weak spots found: "Focus area: [category] — 0 mastered out of N. Try `/quiz` or `/teach` after your next task in this area."
    - If all caught up: "All reviewed! Keep coding — new patterns are detected automatically."

@@ -157,6 +157,7 @@ ln -s ~/learn-while-code/skills/defend ~/.claude/skills/learn-while-code-defend
 ln -s ~/learn-while-code/skills/quiz ~/.claude/skills/learn-while-code-quiz
 ln -s ~/learn-while-code/skills/map-arch ~/.claude/skills/learn-while-code-map-arch
 ln -s ~/learn-while-code/skills/learning-status ~/.claude/skills/learn-while-code-learning-status
+ln -s ~/learn-while-code/skills/sync-obsidian ~/.claude/skills/learn-while-code-sync-obsidian
 ```
 
 ---
@@ -196,7 +197,28 @@ Set `obsidian_vault` to your vault root and concept notes will be synced automat
 }
 ```
 
-Each concept becomes a note with YAML frontmatter, quiz history, and project usage — all linked with tags for graph view.
+The sync creates a connected knowledge graph in your vault:
+
+```
+Learning/CodeConcepts/
+├── _learn-while-code.md              # MOC — overview, progress bars, links to everything
+├── _category-Web.md                  # Category hub — all Web concepts with mastery %
+├── _category-SAP.md                  # Category hub
+├── _category-React.md                # Category hub
+├── _project-MCP-CX-Operations.md     # Project hub — concepts detected in this repo
+├── _project-PlanningDashboard.md     # Project hub
+├── express-middleware.md              # Concept note — wikilinks to related concepts
+├── zustand-state.md                  # Concept note
+└── ...
+```
+
+Everything is linked with `[[wikilinks]]`:
+- **Overview** → categories + projects
+- **Categories** → concepts in that category
+- **Projects** → concepts detected in that repo
+- **Concepts** → related concepts (co-occurring in same projects), their category, and their projects
+
+Open Obsidian's **Graph View** to see your learning map as a visual network. Run `sync-obsidian` to rebuild all index notes.
 
 ---
 

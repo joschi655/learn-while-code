@@ -31,7 +31,7 @@ Structured quiz session using the SM-2 algorithm. Combines three proven learning
    e. Show the correct answer (2-3 sentences from `explanation` field)
    f. Ask user to self-rate: "How confident are you? (1=no idea, 2=wrong but recognized it, 3=correct with difficulty, 4=correct easily, 5=trivial)"
    g. Update concept via SM-2 algorithm, append to `quiz-history.jsonl`
-   h. If Obsidian sync is enabled, sync the concept note
+   h. If Obsidian sync is enabled, sync the concept note AND run `syncAllIndexes()` to update category/project index notes
 5. Show summary after all questions
 
 ## Summary Format
