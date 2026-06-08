@@ -212,7 +212,7 @@ export function generateQuizQuestion(concept: Concept): QuizQuestion {
 
   return {
     conceptId: concept.id,
-    question: `Was ist ${concept.name} und wann benutzt man es?`,
-    hint: `Kategorie: ${concept.category}`,
+    question: `What is ${concept.name} and when would you use it?`,
+    hint: `Category: ${concept.category}`,
   };
 }

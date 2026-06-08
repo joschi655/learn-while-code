@@ -1,17 +1,23 @@
 ---
-description: "Show learning progress dashboard. Concepts by status, category breakdown, streak, cross-project patterns, due reviews. Use when: 'learning status', 'what have I learned', 'mein Lernstand', 'show progress', 'how am I doing'."
+description: "Show learning progress dashboard. Deliberate Practice feedback loop — see which concepts are strong, weak, and due. Use when: 'learning status', 'what have I learned', 'show progress', 'how am I doing', 'what should I study'."
 ---
 
-# Learning Status — Progress Dashboard
+# Learning Status — Deliberate Practice Feedback
 
-Shows a deterministic overview of learning progress.
+Shows a deterministic overview of your learning progress. This enables the **Deliberate Practice** feedback loop — identifying weak spots to focus on.
+
+## Learning Principle
+
+> "Deliberate practice requires knowing exactly where you're weak, then targeting those areas specifically." — Anders Ericsson
+>
+> This dashboard shows your concept mastery by status, category, and cross-project frequency. Use it to decide what to focus on next: encountered-but-never-quizzed concepts, overdue reviews, or categories where you have zero mastery.
 
 ## Instructions
 
 1. Read concepts from `~/.learn-while-code/data/concepts.jsonl`
 2. Read quiz history from `~/.learn-while-code/data/quiz-history.jsonl`
 3. Read project map from `~/.learn-while-code/project-map.json`
-4. Compute and display:
+4. Compute and display the dashboard below
 
 ## Output Format
 
@@ -25,11 +31,11 @@ Shows a deterministic overview of learning progress.
 - **Avg Confidence:** 3.2/5
 
 ### By Status
-unseen       ██████████████████ 12
-encountered  ████████           4
-quizzed      ████               2
+mastered     ██                 1
 understood   ██                 1
-mastered     █                  1
+quizzed      ████               2
+encountered  ████████           4
+unseen       ██████████████████ 12
 
 ### By Category
 | Category | Total | Mastered | Progress |
@@ -38,7 +44,6 @@ mastered     █                  1
 | Web      | 4     | 1        | ██░░░░░░ |
 | React    | 4     | 0        | ░░░░░░░░ |
 | MCP      | 3     | 0        | ░░░░░░░░ |
-| ...      |       |          |          |
 
 ### Cross-Project Patterns (Top 5)
 express-middleware     ████████ 4 projects  [understood]
@@ -57,13 +62,20 @@ vite-bundling          ████    2 projects  [encountered]
 |------|---------|-------|
 | 2026-06-08 | Express Middleware | 4/5 |
 | 2026-06-07 | JWT Validation | 3/5 |
+
+### Weak Spots (Deliberate Practice Focus)
+- [Categories with 0 mastered concepts]
+- [Concepts with incorrectCount > correctCount]
+- [Concepts encountered 5+ times but never quizzed]
 ```
 
-5. End with a suggestion:
-   - If concepts are due: "Du hast N Konzepte zur Review. Sag 'quiz me'."
-   - If nothing due: "Alles reviewed! Arbeite weiter — neue Patterns werden automatisch erkannt."
+5. End with a recommendation:
+   - If concepts are due: "You have N concepts due for review. Say 'quiz me' to start."
+   - If weak spots found: "Focus area: [category] — 0 mastered out of N. Try `/quiz` or `/teach` after your next task in this area."
+   - If all caught up: "All reviewed! Keep coding — new patterns are detected automatically."
 
 ## Gotchas
-- All data is deterministic (read from JSONL files). No LLM judgment in the numbers.
-- Progress bars use block characters: ██ for progress, ░░ for remaining.
+- All numbers are deterministic — read from JSONL files, no LLM judgment.
+- Progress bars: `██` for progress, `░░` for remaining.
 - Cross-project patterns sorted by frequency (most projects first).
+- "Weak spots" section helps implement Deliberate Practice — focus on what's hardest, not what's familiar.
