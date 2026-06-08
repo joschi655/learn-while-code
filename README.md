@@ -4,6 +4,13 @@ Stop vibe-coding blindly. Learn architecture and patterns while you build.
 
 A [Claude Code](https://code.claude.com) plugin that adds a **teaching layer** on top of AI-assisted coding. Inspired by [Contral](https://www.producthunt.com/products/contral)'s Build/Learn/Defense modes. Instead of shipping code you don't understand, learn-while-code detects patterns you use, quizzes you on them, and tracks your progress with spaced repetition.
 
+## Why This Matters
+
+> *"The field underestimates collaboration potential due to paradigms neglecting human learning."*
+> — [Berger et al. (2026), "Fostering human learning is crucial for boosting human-AI synergy"](https://arxiv.org/abs/2512.13253v2)
+
+A reanalysis of 74 human-AI collaboration studies found that most research — and most AI tools — lack design elements that support human learning (like feedback loops and retrieval practice). When those elements are present, human-AI teams consistently outperform either alone. This plugin adds exactly those elements to AI-assisted coding.
+
 ## Learning Framework
 
 This plugin implements a **Reflective Learning Loop** grounded in four established learning principles:
@@ -307,6 +314,14 @@ PRs welcome! Especially for:
 - New pattern definitions (more frameworks, languages, cloud providers)
 - Translations (question templates for other languages)
 - Additional quiz question types
+
+## References
+
+- Berger, J., Burton, J. W., Hertwig, R., Kosch, T., Kurvers, R. H. J. M., Kurzenberger, B., Lazik, C., Onnasch, L., Rieger, T., Thoma, A. I., Wulff, D. U., & Herzog, S. M. (2026). *Fostering human learning is crucial for boosting human-AI synergy.* [arXiv:2512.13253v2](https://arxiv.org/abs/2512.13253v2)
+- Kolb, D. A. (1984). *Experiential Learning: Experience as the Source of Learning and Development.*
+- Ericsson, K. A., Krampe, R. T., & Tesch-Römer, C. (1993). *The role of deliberate practice in the acquisition of expert performance.*
+- Roediger, H. L., & Butler, A. C. (2011). *The critical role of retrieval practice in long-term retention.*
+- Wozniak, P. A. (1990). *SM-2 Algorithm* — used in Anki and other spaced repetition systems.
 
 ## License
 
