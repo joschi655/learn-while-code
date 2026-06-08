@@ -2,7 +2,7 @@
 
 Stop vibe-coding blindly. Learn architecture and patterns while you build.
 
-A [Claude Code](https://code.claude.com) plugin that adds a **teaching layer** on top of AI-assisted coding. Inspired by [Contral](https://www.producthunt.com/products/contral)'s Build/Learn/Defense modes. Instead of shipping code you don't understand, learn-while-code detects patterns you use, quizzes you on them, and tracks your progress with spaced repetition.
+A [Claude Code](https://code.claude.com) plugin that adds a **teaching layer** on top of AI-assisted coding. Instead of shipping code you don't understand, learn-while-code detects patterns you use, quizzes you on them, and tracks your progress with spaced repetition.
 
 ## Why This Matters
 
@@ -246,7 +246,7 @@ Patterns used in more projects are prioritized in quizzes — they're more impor
 
 ### Defense Mode
 
-Inspired by Contral's Defense Mode. Three settings:
+Three settings:
 
 | Mode | Behavior |
 |------|----------|
