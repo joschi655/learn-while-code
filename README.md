@@ -19,9 +19,9 @@ This plugin implements a **Reflective Learning Loop** grounded in four establish
 
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  1. GENERATE │───▶│  2. EXPLAIN  │───▶│  3. RECALL   │───▶│ 4. EXPERIMENT│
-│  AI writes   │    │  AI teaches  │    │  You explain │    │  You modify  │
-│  code        │    │  you why     │    │  without help│    │  independently│
+│ 1. GENERATE │───▶│ 2. EXPLAIN  │───▶│ 3. RECALL   │───▶│4. EXPERIMENT│
+│ AI writes   │    │ AI teaches  │    │ You explain │    │ You modify  │
+│ code        │    │ you why     │    │ without help│    │independently│
 └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
      hooks              /teach            /defend             /quiz
   (automatic)                                             (spaced repetition)
