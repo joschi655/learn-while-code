@@ -1,0 +1,9 @@
+{
+  "name": "learn-while-code",
+  "description": "Learn architecture and patterns while vibe-coding. Contral-inspired teaching layer for Claude Code with spaced repetition, defense mode, Obsidian sync, and cross-project pattern tracking.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Johannes"
+  },
+  "license": "MIT"
+}
