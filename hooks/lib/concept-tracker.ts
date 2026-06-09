@@ -146,6 +146,21 @@ export function sm2Update(concept: Concept, quality: 0 | 1 | 2 | 3 | 4 | 5): Con
   return updated;
 }
 
+// Generic globs match nearly every source file, so they are NOT evidence of a
+// specific pattern and must not contribute to confidence. Only specific
+// filenames (manifest.yml, schema.prisma, *router*, ...) count.
+const GENERIC_GLOBS = new Set(['*.ts', '*.tsx', '*.js', '*.jsx', '*.json', '*.md', '*.yaml', '*.yml']);
+
+// Word-like signatures (no regex metacharacters) get word-boundary anchored so
+// bare words like "transport", "stdio", or "RUN" don't match inside unrelated
+// identifiers or prose. Signatures that already contain regex structure
+// (e.g. "app\\.use\\(") are used as-is.
+function buildSignatureRegex(sig: string): RegExp {
+  const hasMeta = /[\\^$.*+?()[\]{}|]/.test(sig);
+  if (hasMeta) return new RegExp(sig);
+  return new RegExp(`\\b${sig.trim()}\\b`);
+}
+
 export function detectPatterns(content: string, filePath: string): DetectedPattern[] {
   const patterns = readPatterns();
   const detected: DetectedPattern[] = [];
@@ -156,7 +171,7 @@ export function detectPatterns(content: string, filePath: string): DetectedPatte
 
     for (const sig of pattern.codeSignatures) {
       try {
-        if (new RegExp(sig).test(content)) {
+        if (buildSignatureRegex(sig).test(content)) {
           matchCount++;
           if (!firstMatch) firstMatch = sig;
         }
@@ -166,8 +181,9 @@ export function detectPatterns(content: string, filePath: string): DetectedPatte
     }
 
     for (const fp of pattern.filePatterns) {
+      if (GENERIC_GLOBS.has(fp)) continue;
       const fpClean = fp.replace(/\*/g, '');
-      if (filePath.includes(fpClean)) {
+      if (fpClean && filePath.includes(fpClean)) {
         matchCount++;
         if (!firstMatch) firstMatch = fp;
       }
