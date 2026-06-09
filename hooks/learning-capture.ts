@@ -29,7 +29,9 @@ async function main() {
 
     const filePath = tool_input?.file_path || '';
 
-    if (tool_name === 'Read' && !CODE_EXTENSIONS.test(filePath)) process.exit(0);
+    // Only scan real code files. Markdown/prose (SKILL.md, README.md) describe
+    // patterns without being them — scanning them produces false positives.
+    if (!CODE_EXTENSIONS.test(filePath)) process.exit(0);
 
     let content = '';
     if (tool_name === 'Write') {
