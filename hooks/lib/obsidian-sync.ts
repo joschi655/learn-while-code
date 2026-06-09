@@ -72,6 +72,8 @@ export function syncToObsidian(concept: Concept, pattern: Pattern | undefined): 
     ? projects.map(p => `- [[_project-${p}|${p}]]`).join('\n')
     : '- (not yet detected in any project)';
 
+  const lastScore = quizHistory.length > 0 ? quizHistory[quizHistory.length - 1].quality : null;
+
   const content = `---
 concept: ${concept.id}
 status: ${concept.status}
@@ -79,9 +81,12 @@ category: ${concept.category}
 last_review: ${concept.lastSeen}
 confidence: ${concept.correctCount > 0 ? Math.round((concept.correctCount / (concept.correctCount + concept.incorrectCount)) * 5) : 0}
 encounters: ${concept.encounterCount}
+last_score: ${lastScore ?? 'null'}
+quiz_answer: "${pattern ? pattern.explanation.replace(/"/g, "'") : ''}"
 tags:
   - learn-while-code
   - ${concept.category.toLowerCase()}
+  - practice
 ---
 
 # ${statusEmoji(concept.status)} ${concept.name}
@@ -94,6 +99,26 @@ ${pattern.description}
 ## Why (not alternatives)
 ${pattern.explanation}
 ` : `Category: ${concept.category}`}
+
+## Practice
+
+> **${pattern?.whyQuestion ?? `What is ${concept.name} and when would you use it?`}**
+
+Think before you reveal.
+
+<details>
+<summary>Show answer</summary>
+
+${pattern?.explanation ?? ''}
+
+</details>
+
+**Self-assessment after revealing:**
+- [ ] Got it — I explained it correctly
+- [ ] Partial — I knew the direction but missed details
+- [ ] Wrong — I need another encounter with this
+
+*To get Claude to check a free-text answer: paste your answer and say "check my answer for [[${concept.id}]]*
 
 ## Projects
 ${projectLinks}
