@@ -1,4 +1,5 @@
 ---
+name: learning-status
 description: "Show learning progress dashboard. Deliberate Practice feedback loop — see which concepts are strong, weak, and due. Use when: 'learning status', 'what have I learned', 'show progress', 'how am I doing', 'what should I study'."
 ---
 

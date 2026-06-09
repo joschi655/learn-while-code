@@ -1,4 +1,5 @@
 ---
+name: defend
 description: "Defense Mode — explain AI-generated code before committing. Retrieval Practice: answer 3-5 targeted questions about logic, data flow, and architectural decisions without help. Blocks shallow understanding. Use when: 'defend', 'defense mode', 'explain before commit', 'prove I understand', 'test my understanding'."
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: teach
 description: "Explain code and patterns after AI writes them. Kolb's Reflection phase — breaks down what was done, why this pattern, how it fits the architecture, and what could go wrong. Use when: 'teach me', 'explain this', 'what did you just do', 'why this pattern', 'what should I learn from this'."
 ---
 

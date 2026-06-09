@@ -1,4 +1,5 @@
 ---
+name: map-arch
 description: "Scan the current repository and produce a compact architecture summary. Kolb's Conceptualization phase — build a mental model of the whole system. Use when: 'map architecture', 'show me the architecture', 'repo overview', 'what does this project do', 'how is this structured'."
 ---
 

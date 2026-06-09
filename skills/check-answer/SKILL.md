@@ -1,4 +1,5 @@
 ---
+name: check-answer
 description: "Check a free-text answer against the correct answer stored in an Obsidian concept note. Use when: 'check my answer for [[concept]]', 'was I right about X', 'grade my answer', 'did I get it'."
 ---
 

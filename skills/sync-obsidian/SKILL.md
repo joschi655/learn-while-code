@@ -1,4 +1,5 @@
 ---
+name: sync-obsidian
 description: "Sync all learning data to Obsidian vault. Rebuilds concept notes, category indexes, project indexes, and the overview MOC. Creates a connected knowledge graph visible in Obsidian's graph view. Use when: 'sync obsidian', 'update obsidian', 'rebuild vault', 'sync learning notes'."
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: quiz
 description: "Interactive spaced repetition quiz on architecture concepts. Uses SM-2 scheduling (Spacing), mixes categories (Interleaving), and asks WHY questions (Retrieval Practice). Use when: 'quiz me', 'quiz', 'test my knowledge', 'spaced repetition', 'review session'."
 ---
 
