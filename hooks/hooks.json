@@ -42,6 +42,11 @@
             "type": "command",
             "command": "bun $PLUGIN_DIR/hooks/defense-gate.ts",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bun $PLUGIN_DIR/hooks/project-knowledge-nudge.ts",
+            "timeout": 5
           }
         ]
       }
