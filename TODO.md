@@ -10,6 +10,7 @@
   - Note: Codex requires users to trust hooks once via `/hooks` before they run
 - [ ] **Test plugin install path** — `/plugin install learn-while-code@joschi655/learn-while-code` is documented but untested; only manual symlink setup is verified
 - [ ] **learn-project: auto-refresh MOC** — after writing a project knowledge note, run `syncAllIndexes()` so the overview links it without a manual sync
+- [x] **Cheaper model for learning** — `study` skill recommends `/model haiku` at session start and delegates free-text grading to a Haiku subagent (shipped)
 
 ## Improvements
 

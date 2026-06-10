@@ -51,15 +51,21 @@ This plugin implements a **Reflective Learning Loop** grounded in four establish
 
 ## Features
 
-### 5 Skills (slash commands)
+### 9 Skills (slash commands)
 
 | Command | Mode | Description |
 |---------|------|-------------|
+| `/learn-while-code:study` | **Study** | **Main entry point** — status warm-up, due reviews, free-text grading via cheap model, SM-2 + Obsidian updates |
 | `/learn-while-code:teach` | Learn | Explain recent code changes — architecture, not syntax |
 | `/learn-while-code:defend` | Defense | Explain AI-generated code before committing |
 | `/learn-while-code:quiz` | Quiz | SM-2 spaced repetition on due concepts |
+| `/learn-while-code:learn-project` | Document | Write a project knowledge note: architecture, core decision logic step by step, linked concepts |
 | `/learn-while-code:map-arch` | Explore | Scan repo, produce architecture summary |
 | `/learn-while-code:learning-status` | Progress | Dashboard: streak, categories, cross-project stats |
+| `/learn-while-code:check-answer` | Grade | Grade a free-text answer against a concept note's stored answer |
+| `/learn-while-code:sync-obsidian` | Sync | Rebuild the full Obsidian knowledge graph |
+
+**Cost-aware:** `study` recommends switching to a cheaper model for review sessions and delegates free-text grading to a Haiku subagent — learning doesn't need a frontier model.
 
 ### 3 Hooks (automatic)
 
@@ -158,6 +164,9 @@ ln -s ~/learn-while-code/skills/quiz ~/.claude/skills/learn-while-code-quiz
 ln -s ~/learn-while-code/skills/map-arch ~/.claude/skills/learn-while-code-map-arch
 ln -s ~/learn-while-code/skills/learning-status ~/.claude/skills/learn-while-code-learning-status
 ln -s ~/learn-while-code/skills/sync-obsidian ~/.claude/skills/learn-while-code-sync-obsidian
+ln -s ~/learn-while-code/skills/study ~/.claude/skills/learn-while-code-study
+ln -s ~/learn-while-code/skills/learn-project ~/.claude/skills/learn-while-code-learn-project
+ln -s ~/learn-while-code/skills/check-answer ~/.claude/skills/learn-while-code-check-answer
 ```
 
 ---
