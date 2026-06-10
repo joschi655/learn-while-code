@@ -5,10 +5,29 @@ import { loadConfig } from './config';
 import { readProjectMap } from './project-map';
 import { readConcepts, readQuizHistory, type Concept, type Pattern } from './concept-tracker';
 
+// Vault layout: top level holds the MOC and rich project knowledge notes
+// (the things a human actually reads); Concepts/ holds the per-pattern
+// flashcard notes; System/ holds auto-generated indexes.
 function getVaultDir(): string | null {
   const config = loadConfig();
   if (!config.obsidian_vault) return null;
   const dir = join(config.obsidian_vault, config.obsidian_folder);
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  return dir;
+}
+
+function getConceptsDir(): string | null {
+  const base = getVaultDir();
+  if (!base) return null;
+  const dir = join(base, 'Concepts');
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  return dir;
+}
+
+function getSystemDir(): string | null {
+  const base = getVaultDir();
+  if (!base) return null;
+  const dir = join(base, 'System');
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
   return dir;
 }
@@ -138,7 +157,8 @@ ${quizTable}
 - **Next Review:** ${concept.nextReview}
 `;
 
-  writeFileSync(join(vaultDir, `${concept.id}.md`), content);
+  const conceptsDir = getConceptsDir();
+  if (conceptsDir) writeFileSync(join(conceptsDir, `${concept.id}.md`), content);
 }
 
 export function syncCategoryIndex(category: string): void {
@@ -177,7 +197,8 @@ ${conceptList}
 ${'█'.repeat(mastered)}${'▓'.repeat(understood)}${'░'.repeat(total - mastered - understood)} ${Math.round(((mastered + understood) / Math.max(total, 1)) * 100)}%
 `;
 
-  writeFileSync(join(vaultDir, `_category-${category}.md`), content);
+  const systemDir = getSystemDir();
+  if (systemDir) writeFileSync(join(systemDir, `_category-${category}.md`), content);
 }
 
 export function syncProjectIndex(projectName: string): void {
@@ -217,7 +238,8 @@ ${conceptList || '- (none detected yet)'}
 \`${project.path}\`
 `;
 
-  writeFileSync(join(vaultDir, `_project-${projectName}.md`), content);
+  const systemDir = getSystemDir();
+  if (systemDir) writeFileSync(join(systemDir, `_project-${projectName}.md`), content);
 }
 
 export function syncAllIndexes(): void {
@@ -254,6 +276,15 @@ export function syncAllIndexes(): void {
     .map(([name, proj]) => `- [[_project-${name}|${name}]] — ${proj.concepts_used.length} concepts (${proj.last_seen})`)
     .join('\n');
 
+  // Rich project knowledge notes written by the learn-project skill live at
+  // the top level of the folder, next to this MOC.
+  const knowledgeNotes = readdirSync(vaultDir)
+    .filter(f => f.endsWith('.md') && !f.startsWith('_'))
+    .map(f => f.replace(/\.md$/, ''));
+  const knowledgeLinks = knowledgeNotes.length > 0
+    ? knowledgeNotes.map(n => `- [[${n}]]`).join('\n')
+    : '- (none yet — run the learn-project skill inside a repo)';
+
   const overview = `---
 type: learning-overview
 tags:
@@ -267,10 +298,13 @@ tags:
 
 ${'█'.repeat(mastered)}${'▓'.repeat(understood)}${'▒'.repeat(encountered - mastered - understood)}${'░'.repeat(total - encountered)} ${Math.round((mastered / Math.max(total, 1)) * 100)}% mastered
 
+## Project Knowledge
+${knowledgeLinks}
+
 ## Categories
 ${catLinks}
 
-## Projects
+## Projects (auto-tracked)
 ${projLinks}
 
 ## Recently Active
