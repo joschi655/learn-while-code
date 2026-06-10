@@ -11,6 +11,17 @@ Generates the note a future-you opens to re-understand a project: not just what 
 
 > Understanding a system means being able to trace its decisions: which inputs matter, in what order they're checked, what happens at each branch. If you can narrate the logic flow from memory, you can also specify changes to it precisely. That's the skill this note trains.
 
+## The Flow — Explain First, Write Second, Quiz Later
+
+This is the order, always:
+
+1. **Investigate** the project from the real code
+2. **Explain it to the user conversationally** and invite questions — this is the learning moment, it comes BEFORE the note
+3. **Write the knowledge note** to Obsidian (the durable record of what was just explained)
+4. **Point to `study`** for later spaced-repetition review
+
+Never skip step 2 to jump straight to writing a file. The user learns by having it explained and by asking follow-ups — the note is the artifact, not the teaching.
+
 ## Instructions
 
 ### 1. Investigate the project (be thorough — this note must be self-sufficient)
@@ -21,7 +32,17 @@ Generates the note a future-you opens to re-understand a project: not just what 
 - Identify tools, frameworks, and patterns used. Check `~/.learn-while-code/data/concepts.jsonl` for matching concept IDs — those get `[[wikilinks]]`
 - Identify how components connect: who calls whom, where state lives, what the data flow is
 
-### 2. Write the note
+### 2. Explain it — out loud, before writing anything
+
+Walk the user through what you found, in plain language, in this order:
+- **What the project does** and the core problem it solves (1-2 sentences)
+- **The architecture** — components and how they connect
+- **The core decision logic, step by step** — narrate it, with the WHY for each ordering choice. This is the centerpiece.
+- **The tools and principles used** and why each one fits here
+
+Then stop and say: **"Frag mich was du willst — wenn's sitzt, schreib ich die Note in deine Knowledgebase."** Answer follow-up questions until the user is satisfied. This back-and-forth IS the learning; the note just captures it. Only proceed to writing once the user signals they've got it (or explicitly says "schreib die Note" / "go ahead").
+
+### 3. Write the note
 
 Target: `{obsidian_vault}/{obsidian_folder}/{ProjectName}.md` (top level, NOT in Concepts/ or System/). Read config from `~/.learn-while-code/config.json`.
 
@@ -80,15 +101,16 @@ of Y..." — 2-4 sentences linking the pieces.}
 - {other relevant project knowledge notes}
 ```
 
-### 3. Cross-link
+### 4. Cross-link
 
 - Every tool/principle that has a concept note in the tracker gets a `[[concept-id]]` wikilink
 - Link the auto-generated `[[_project-{name}]]` index note
 - If other project knowledge notes exist at the top level and share concepts, link them under Related
+- Run `syncAllIndexes()` so the MOC (`_learn-while-code.md`) links the new note
 
-### 4. Confirm
+### 5. Confirm and hand off
 
-Report where the note was written and which concepts it links to. Suggest opening it in Obsidian and trying the "Think About It" questions.
+Report where the note was written and which concepts it links to. Then point forward: "Die Note liegt jetzt in deiner Knowledgebase. Später kannst du `study` sagen — dann frag ich dich an den 'Think About It'-Fragen ab und tracke das mit Spaced Repetition."
 
 ## Gotchas
 - **The Core Logic section is the point.** Don't write a generic stack list — trace the actual decision flow from the real code, in order, with reasons. If you can't find a central logic, say so and describe the dominant data flow instead.
